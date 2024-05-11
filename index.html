@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="favicon.png" />
+    <title>鼠标放大镜</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+      }
+      .title {
+        width: 100vw;
+        height: 100vh;
+        background: #373b44; /* fallback for old browsers */
+        background: -webkit-linear-gradient(to right, #4286f4, #373b44); /* Chrome 10-25, Safari 5.1-6 */
+        background: linear-gradient(to right, #4286f4, #373b44); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: clamp(40px, 10vw, 100px); /* 兼容移动端 */
+      }
+    </style>
+  </head>
+  <body>
+    <div class="title">
+      <div class="label">鼠标放大镜</div>
+    </div>
+    <script>
+      let dom = document.querySelector(".title");
+      let label = document.querySelector(".label");
+      let audio = new Audio("buling.mp3");
+      // PC端
+      dom.addEventListener("mousemove", (e) => {
+        label.innerHTML = `${e.clientX} , ${e.clientY}`;
+        audio.play();
+      });
+      // 移动端
+      dom.addEventListener("touchmove", (e) => {
+        label.innerHTML = `${parseInt(e.targetTouches[0].clientX)} , ${parseInt(e.targetTouches[0].clientY)}`;
+      });
+    </script>
+  </body>
+</html>
